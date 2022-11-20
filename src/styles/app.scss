@@ -1,0 +1,14 @@
+@import "./GlobalStyles.scss";
+
+.app-wrapper {
+  max-width: 750px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+}

@@ -1,0 +1,33 @@
+@import "./GlobalStyles.scss";
+
+.button {
+  display: inline-block;
+  height: auto;
+  padding: 0.8rem 2rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 1.6rem;
+  text-decoration: none;
+  text-transform: capitalize;
+  cursor: pointer;
+  overflow: hidden;
+  &--select {
+    color: $black-2;
+    font-family: Poppins;
+    padding: 0.8rem;
+    border: none;
+    background-color: $bg-3;
+
+    width: 150px;
+    cursor: pointer;
+  }
+}
+.button--primary {
+  background-color: $primary;
+  color: $white;
+}
+.button--secondary {
+  background-color: $bg-3;
+  color: $black-1;
+}
