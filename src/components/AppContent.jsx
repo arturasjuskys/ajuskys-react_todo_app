@@ -17,9 +17,11 @@ export default function AppContent() {
 
   return (
     <div>
-      {filteredTodoList && filteredTodoList.length > 0
-        ? filteredTodoList.map(todo => <TodoItem key={todo.id} todo={todo} />)
-        : "nothing"}
+      {filteredTodoList && filteredTodoList.length > 0 ? (
+        filteredTodoList.map(todo => <TodoItem key={todo.id} todo={todo} />)
+      ) : (
+        <div className="no-todos">No Todos Found</div>
+      )}
     </div>
   );
 }

@@ -91,3 +91,14 @@
     background-color: $gray-2;
   }
 }
+
+.no-todos {
+  text-align: center;
+  padding: 1rem;
+  background: $white;
+  margin-bottom: 1.5rem;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 1.4rem;
+  color: $black-2;
+}

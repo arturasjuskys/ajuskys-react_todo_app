@@ -55,7 +55,8 @@ export default function TodoItem({ todo }) {
               {todo.title}
             </p>
             <p className="item-time">
-              {format(new Date(todo.time), "p, dd MMM yyyy")}
+              {todo.time}
+              {/* {format(new Date(todo.time), "p, dd MMM yyyy")} */}
             </p>
           </div>
         </div>

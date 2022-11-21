@@ -39,7 +39,8 @@ export default function TodoModal({ type, modalOpen, setModalOpen, oldTodo }) {
             id: uuid(),
             title,
             status,
-            time: new Date(),
+            // time: new Date(),
+            time: new Date().toLocaleString(),
           })
         );
 
@@ -58,6 +59,8 @@ export default function TodoModal({ type, modalOpen, setModalOpen, oldTodo }) {
           );
         } else {
           toast.error("No Changes Made");
+          // fixes modal close issue
+          return;
         }
       }
       setModalOpen(false);
@@ -91,6 +94,7 @@ export default function TodoModal({ type, modalOpen, setModalOpen, oldTodo }) {
               <label htmlFor="title">
                 Title
                 <input
+                  autoFocus
                   type="text"
                   id="title"
                   value={title}

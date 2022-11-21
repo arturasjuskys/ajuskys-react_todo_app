@@ -75,7 +75,7 @@ export const todoSlice = createSlice({
           }
         });
         // updating local storage with updated doto list
-        window.localStorage.setItem("todoList", todoListArr);
+        window.localStorage.setItem("todoList", JSON.stringify(todoListArr));
         // updating state with updated doto list
         state.todoList = todoListArr;
       }
