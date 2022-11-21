@@ -8,7 +8,7 @@ const getInitialTodo = () => {
   }
 
   // if no todo items in local storage, create empty todo list in local storage, and return it
-  window.localStorage.setItem("todoList", JSON.stringify([]));
+  window.localStorage.setItem("todoList", []);
   return [];
 };
 
@@ -41,8 +41,46 @@ export const todoSlice = createSlice({
         );
       }
     },
+    updateTodo: (state, action) => {
+      // read local storage
+      const todoList = window.localStorage.getItem("todoList");
+
+      if (todoList) {
+        const todoListArr = JSON.parse(todoList);
+        // find selected todo and update
+        todoListArr.forEach((todo, index) => {
+          if (todo.id === action.payload.id) {
+            todo.status = action.payload.status;
+            todo.title = action.payload.title;
+          }
+        });
+        // updating local storage with updated todo list
+        window.localStorage.setItem("todoList", JSON.stringify(todoListArr));
+        // update state with updated todo list
+        state.todoList = todoListArr;
+      }
+    },
+    deleteTodo: (state, action) => {
+      // read local storage
+      const todoList = window.localStorage.getItem("todoList");
+
+      if (todoList) {
+        // parse into json
+        const todoListArr = JSON.parse(todoList);
+        todoListArr.forEach((todo, index) => {
+          if (todo.id === action.payload) {
+            // taking out one todo according to matched index
+            todoListArr.splice(index, 1);
+          }
+        });
+        // updating local storage with updated doto list
+        window.localStorage.setItem("todoList", todoListArr);
+        // updating state with updated doto list
+        state.todoList = todoListArr;
+      }
+    },
   },
 });
 
-export const { addTodo } = todoSlice.actions;
+export const { addTodo, updateTodo, deleteTodo } = todoSlice.actions;
 export default todoSlice.reducer;

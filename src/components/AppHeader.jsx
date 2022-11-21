@@ -17,7 +17,7 @@ export default function AppHeader() {
         <option value="complete">Complete</option>
       </ButtonSelect>
 
-      <TodoModal modalOpen={modalOpen} setModalOpen={setModalOpen} />
+      <TodoModal type="add" modalOpen={modalOpen} setModalOpen={setModalOpen} />
     </div>
   );
 }
