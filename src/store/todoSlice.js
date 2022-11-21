@@ -13,6 +13,7 @@ const getInitialTodo = () => {
 };
 
 const initialValue = {
+  filterStatus: "all",
   todoList: getInitialTodo(),
 };
 
@@ -79,8 +80,12 @@ export const todoSlice = createSlice({
         state.todoList = todoListArr;
       }
     },
+    updateFilterStatus: (state, action) => {
+      state.filterStatus = action.payload;
+    },
   },
 });
 
-export const { addTodo, updateTodo, deleteTodo } = todoSlice.actions;
+export const { addTodo, updateTodo, deleteTodo, updateFilterStatus } =
+  todoSlice.actions;
 export default todoSlice.reducer;
