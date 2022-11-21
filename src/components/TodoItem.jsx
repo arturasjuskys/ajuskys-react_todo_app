@@ -2,28 +2,49 @@ import "../styles/item.scss";
 import { format } from "date-fns/esm";
 import { MdDelete, MdEdit } from "react-icons/md";
 import { useDispatch } from "react-redux";
-import { deleteTodo } from "../store/todoSlice";
+import { deleteTodo, updateTodo } from "../store/todoSlice";
 import toast from "react-hot-toast";
 import TodoModal from "./TodoModal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import ButtonCheck from "./ButtonCheck";
 
 export default function TodoItem({ todo }) {
-  const [updateModalOpen, setUpdateModalOpen] = useState(false);
-
   const dispatch = useDispatch();
+  const [updateModalOpen, setUpdateModalOpen] = useState(false);
+  const [checked, setChecked] = useState(false);
+
+  useEffect(() => {
+    if (todo.status === "complete") {
+      setChecked(true);
+    } else {
+      setChecked(false);
+    }
+  }, [todo.status]);
+
   const handleDelete = () => {
     dispatch(deleteTodo(todo.id));
     toast.success("Todo Deleted Successfully");
   };
+
   const handleEdit = () => {
     setUpdateModalOpen(true);
+  };
+
+  const handleCheck = () => {
+    setChecked(!checked);
+    dispatch(
+      updateTodo({
+        ...todo,
+        status: checked ? "incomplete" : "complete",
+      })
+    );
   };
 
   return (
     <>
       <div className="item">
         <div className="item-details">
-          [ ]
+          <ButtonCheck checked={checked} handleCheck={handleCheck} />
           <div className="item-content">
             <p
               className={`item-text ${
